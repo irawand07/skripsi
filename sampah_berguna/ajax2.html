@@ -1,0 +1,46 @@
+<html>
+<head>
+ <title>json + jquery</title>
+ <script type='text/javascript' src='http://localhost/skripsi/assets/js/jquery.min.js'></script>
+ <script type='text/javascript'>
+   $(document).ready(function(){
+     $("#loading").hide();
+   });
+
+   $(function(){
+     $("#form_json").submit(function(){
+
+        $("#loading").show();
+        $("#loading").fadeIn(500).html("<img src='loading.gif' /> Loading data...");
+
+        $.ajax({
+            url:"proses.php",
+            dataType:"json",
+            success:function(data){
+                teman = "<ol>";
+                $.each(data, function(i,n){
+                    teman = teman + "<li>" + n["nama"] + " suka : " + n["hobby"] + "</li>";
+                });
+                teman = teman + "</ol>";
+                $(".result_json").append(teman);
+
+                $("#loading").hide();
+            }
+        });
+
+        return false;
+     });
+   });
+ </script>
+</head>
+<body>
+ Untuk menampilkan data json dari database, klik tombol disamping...
+ <form id='form_json'>
+  <input type='submit' class='tbl_ok' value='Lihat' />
+ </form>
+
+ <div id='loading'></div>
+ <div class='result_json'>
+ </div>
+</body>
+</html>

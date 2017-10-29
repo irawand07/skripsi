@@ -20,7 +20,8 @@
 				<ul>
 					 <li class="active"><a href="index.php">HOME</a></li>
 					 <li><a class="scroll" href="perpustakaan.php">PERPUSTAKAAN</a></li>
-					 <li><a class="scroll" href="fasilitas.php">VERIFIKASI</a></li>
+					 <li><a class="scroll" href="verifikasi.php">VERIFIKASI</a></li>
+					 <li><a class="scroll" href="webservice.php">WEB SERVICE</a></li>
 					 <li><a style="color: #FFD700" class="scroll" href="logout.php"><?php echo $_SESSION['nama']; ?> | Logout</a></li>
 				</ul>
 

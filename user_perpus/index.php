@@ -19,7 +19,7 @@
 			 <div class="top-menu">
 				<ul>
 					<li class="active"><a href="index.php">HOME</a></li>
-					<li><a class="scroll" href="verifikasi.php">VERIFIKASI</a></li>
+					<li><a class="scroll" href="profil.php">PROFIL</a></li>
 					<li><a class="scroll" href="syarat.php">SYARAT PENDAFTRAN</a></li>
 					<li><a class="scroll" href="aturan.php">ATURAN</a></li>
 					 <li><a style="color: #FFD700" class="scroll" href="logout.php"><?php echo $_SESSION['nama']; ?> | Logout</a></li>
@@ -38,7 +38,7 @@
 				case 'simpanok':
 					echo '<div class="alert alert-success alert-dismissible" role="alert">
   				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  				<strong>Sukses!</strong> Data verifikasi perpustakaan telah disimpan. </div>';
+  				<strong>Sukses!</strong> Profil perpustakaan telah disimpan. </div>';
 					break;
 			}
 		}

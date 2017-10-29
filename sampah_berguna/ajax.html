@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "
+-
+//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<title></title>
+<meta name="" content="">
+<script type="text/javascript" src="../assets/js/jquery.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#ajaxTest').submit(function(eve){
+      eve.preventDefault();
+      $.ajax({
+        url: "ajax.php",
+        type:"POST",
+        dataType: "html",
+        data: $(this).serialize(),
+          beforeSend: function(){
+            $('#waiting').text('Mohon Tunggu Sebentar').fadeIn('slow');
+          },
+          success: function(html){
+            $('#waiting').fadeOut('slow');
+            $('#result').text(html).fadeIn('slow').fadeOut('slow').fadeIn('slow');
+          }
+        });
+      });
+    });
+</script>
+</head>
+<body>
+<form method="POST" id="ajaxTest">
+<input type="input" name="ajaxInput" />
+<input type="submit" name="ajaxBtn" value="Test
+Button" />
+</form>
+<div id="waiting"></div>
+<div id="result"></div>
+</body>
+</html>
