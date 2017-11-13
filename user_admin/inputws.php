@@ -7,12 +7,13 @@
 		header ("location: login.php");
 	}
 ?>
+<!--
 <script type="text/javascript">
   $(document).ready(function(){
     $('#formws').submit(function(eve){
       eve.preventDefault();
       $.ajax({
-        url: "proses/test_ws.php",
+        url: "proses/simpan_ws.php",
         type:"POST",
         dataType: "html",
         data: $(this).serialize(),
@@ -27,6 +28,7 @@
       });
     });
 </script>
+-->
 <div class="header">
 	 <div class="top-header">
 		 <div class="container">
@@ -39,7 +41,8 @@
 				<ul>
 					 <li><a href="index.php">HOME</a></li>
 					 <li><a class="scroll" href="perpustakaan.php">PERPUSTAKAAN</a></li>
-					 <li class="active"><a class="scroll" href="verifikasi.php">VERIFIKASI</a></li>
+					 <li><a class="scroll" href="verifikasi.php">VERIFIKASI</a></li>
+					 <li class="active"><a class="scroll" href="webservice.php">WEB SERVICE</a></li>
 					 <li><a style="color: #FFD700" class="scroll" href="logout.php"><?php echo $_SESSION['nama']; ?> | Logout</a></li>
 				</ul>
 

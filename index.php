@@ -1,5 +1,5 @@
 <?php include "__atas.php"; ?>
-<?php include "koneksi.php"; ?>
+<?php include_once "koneksi.php"; ?>
 
 <?php
 	$login = new AksesDB();
@@ -36,11 +36,11 @@
 			<div class="banner-info text-center">
 				<h3><label>Satu </label> Pencarian ke Beberapa Perpustakaan</h3>
 				<div class="cari">
-					<form action="index.php" method="get" autocomplete="off">
+					<form action="hasilcari.php" method="get" autocomplete="off">
 						<h5>SILAHKAN CARI BUKU YANG ANDA INGINKAN :</h5>
 						<div class="contact-form">
 							<h5>
-								<input type="text" class="form-control input-lg" placeholder="Masukkan isbn / judul / pengarang / penerbit" >
+								<input name="keyword" type="text" class="form-control input-lg" placeholder="Masukkan isbn / judul / pengarang / penerbit" >
 								<br/>
 								<a href="#spesifik" data-toggle="collapse" style="color: black;"><u>Pencarian Spesifik</u></a>
 							</h5>
@@ -51,7 +51,7 @@
 											 <h5>Berdasarkan</h5>
 											 <div class="section_room">
 											      <select name="dasar" id="dasar" >
-														<option value="null">SEMUA</option>
+														<option value="semua">SEMUA</option>
 														<option value="isbn">ISBN</option>
 														<option value="judul">JUDUL</option>
 														<option value="pengarang">PENGARANG</option>
@@ -60,43 +60,26 @@
 											 </div>
 										 </li>
 										 <li class="span1_of_1">
-											 <h5>Sort By</h5>
+											 <h5>Perpustakaan</h5>
 											 <div class="section_room">
-											      <select id="country" onchange="change_country(this.value)" class="frm-field required">
-														<option value="lokasi">LOKASI</option>
-														<option value="null">Suite room</option>
-														<option value="AX">Single room</option>
-														<option value="AX">Double room</option>
+											      <select name="perpus" class="frm-field required">
+														<option value="terdekat">Terdekat</option>
+														<?php
+															$perpus = new AksesDB();
+															$hasil = $perpus->userAmbilPerpustakaanAktif();
+															while ($row=mysqli_fetch_assoc($hasil)){
+																echo "<option value='".$row['id_perpustakaan']."'>".$row['nama_perpustakaan']."</option>";
+															}
+														?>
 											      </select>
 											 </div>
 										 </li>
-										 <li class="span1_of_1">
-											 <h5>Room type</h5>
-											 <div class="section_room">
-											      <select id="country" onchange="change_country(this.value)" class="frm-field required">
-														<option value="null">Standard Single Room</option>
-														<option value="null">Suite room</option>
-														<option value="AX">Single room</option>
-														<option value="AX">Double room</option>
-											      </select>
-											 </div>
-										 </li>
-										 <li class="span1_of_1">
-											 <h5>Room type</h5>
-											 <div class="section_room">
-											      <select id="country" onchange="change_country(this.value)" class="frm-field required">
-														<option value="null">Standard Single Room</option>
-														<option value="null">Suite room</option>
-														<option value="AX">Single room</option>
-														<option value="AX">Double room</option>
-											      </select>
-											 </div>
-										 </li>
+
 										 <div class="clearfix"></div>
 									 </ul>
 								</div>
 
-							<h4><button type="submit" class="btn primary" >Search</button></h4>
+							<h4><button name="search" type="submit" class="btn primary" >Search</button></h4>
 						</div>
 
 

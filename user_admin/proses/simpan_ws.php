@@ -20,10 +20,7 @@
       $no=1;
       foreach($string as $selected){
         $tabel .= $selected;
-        if($no % 2 == 0)
-          $tabel .= ";";
-        else
-          $tabel .= ":";
+        $tabel .= ",";
 				$no++;
       }
       //Menghapus karakter terakhir
@@ -41,9 +38,6 @@
       echo "Masih ada kesalahan, Silahkan perbaiki!<br/>";
 	    echo "<input type='button' value='kembali' onClick='self.history.back()'>";
     }
-
-
-
   }else {
     header ("location: ../login.php");
   }

@@ -182,7 +182,7 @@
 			if ($query)
 					return true;
 			else
-					return false;
+					die ("Gagal melihat produk".mysqli_error($this->konek));
 
 		}
 
@@ -202,6 +202,55 @@
 			return $query;
 
 		}
+
+		function userAmbilPerpustakaan(){
+			$query=mysqli_query($this->konek," SELECT p.id_perpustakaan , p.nama_perpustakaan, p.alamat, p.tlp, p.email,p.logo_perpustakaan, p.url_perpustakaan, p.tgl_daftar,
+				 ws.id_perpustakaan, ws.status_server FROM perpustakaan p, ws_perpustakaan ws WHERE p.id_perpustakaan = ws.id_perpustakaan");
+			if (!$query)
+				die ("Gagal melihat produk".mysqli_error($this->konek));
+			return $query;
+		}
+
+		function userAmbilPerpustakaanAktif(){
+			$query=mysqli_query($this->konek," SELECT p.id_perpustakaan , p.nama_perpustakaan,
+				 ws.id_perpustakaan, ws.status_server FROM perpustakaan p, ws_perpustakaan ws WHERE p.id_perpustakaan = ws.id_perpustakaan AND ws.status_server='Aktif'");
+			if (!$query)
+				die ("Gagal melihat produk".mysqli_error($this->konek));
+			return $query;
+		}
+
+		function userAmbilPerpusTerdekat(){
+			$query=mysqli_query($this->konek," SELECT p.id_perpustakaan , p.nama_perpustakaan,
+				 ws.id_perpustakaan, ws.url_webservice, ws.apikey, ws.nama_tabel, ws.struktur_tabel, ws.status_server FROM perpustakaan p, ws_perpustakaan ws WHERE p.id_perpustakaan = ws.id_perpustakaan AND ws.status_server='Aktif'");
+			if (!$query)
+				die ("Gagal melihat produk".mysqli_error($this->konek));
+			return $query;
+		}
+
+
+		function userCariBuku($keyword, $dasar, $url, $apikey, $nama_tabel, $struktur_tabel){
+			$arr = explode(",", $struktur_tabel);
+			$jum = count($arr);
+			//print_r($arr);
+			$tabel =array();
+			$no=1;
+			for ($i=0; $i <$jum-1 ; $i++) {
+				 $tabel[$arr[$i]] = $arr[$no];
+				 $no = $no + 2;
+				 $i++;
+			}
+
+			if ($dasar=='semua') {
+				$url = $url."?keyword=".$keyword."&aksi=carisemua&tabel=".$nama_tabel."&isbn=".$tabel['isbn']."&judul=".$tabel['judul']."&pengarang=".$tabel['pengarang']."&penerbit=".$tabel['penerbit']."&key=".$apikey;
+				$json = file_get_contents($url);
+				$data = json_decode($json,true);
+				return $data;
+
+			}else {
+
+			}
+		}
+
 
 
 

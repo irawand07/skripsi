@@ -38,7 +38,7 @@
 </div>
 <div class="rooms ">
   <div class="col-md-12 booking-form">
-    <table class="table table-striped table-bordered data">
+    <table class="hover table table-striped table-bordered data">
       <thead>
 				<tr>
           <th>No</th>
